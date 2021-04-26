@@ -1,5 +1,16 @@
 const express = require('express');
 
+// connection to BD
+const db = require('./config/db');
+
+// import model
+require('./models/Operations');
+
+db.sync()
+    .then(() => console.log('Conectado al servidor'))
+    .catch( err => console.log(err));
+
+
 const app = express();
 
 // Settings
