@@ -8,10 +8,10 @@ const Operation = db.define('operation', {
         defaultValue: Sequelize.UUIDV4,
         primaryKey: true
     },
-    name: DataTypes.STRING,
+    name: DataTypes.STRING(100),
     price: DataTypes.FLOAT(8, 2),
     date: DataTypes.DATEONLY,
-    type: DataTypes.STRING
+    type: DataTypes.STRING(10)
 });
 
 module.exports = Operation;

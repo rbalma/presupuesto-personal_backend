@@ -3,6 +3,9 @@ const express = require('express');
 // connection to BD
 const db = require('./config/db');
 
+// Load routing
+const operationsRoutes = require('./routes/operation');
+
 // import model
 require('./models/Operations');
 
@@ -19,8 +22,9 @@ app.set('port', process.env.PORT || 4000);
 // Middlewars
 app.use(express.json());
 
-// Routes
-app.use(require('./routes/operation'));
+
+// Router Basic
+app.use('/api/', operationsRoutes);
 
 // Starting the server
 app.listen(app.get('port'), () => {
