@@ -55,22 +55,13 @@ exports.getOperationById = async (req, res) => {
     res.json(operation);
 }
 
-exports.getIngress = async (req, res) => {
+exports.getPrices = async (req, res) => {
+
+    const query = req.query;
 
     const sum = await Operation.sum('price', {
         where: {
-            type: 'ingress'
-        }
-    })
-
-    res.json(sum);
-}
-
-exports.getEgress = async (req, res) => {
-
-    const sum = await Operation.sum('price', {
-        where: {
-            type: 'egress'
+            type: query.type
         }
     })
 

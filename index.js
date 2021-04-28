@@ -3,6 +3,8 @@ const express = require('express');
 // connection to BD
 const db = require('./config/db');
 
+const cors = require('cors');
+
 // Load routing
 const operationsRoutes = require('./routes/operation');
 const usersRoutes = require('./routes/user');
@@ -19,11 +21,13 @@ db.sync()
 const app = express();
 
 // Settings
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 5000);
 
 // Middlewars
 app.use(express.json());
 
+// enable cors
+app.use(cors());
 
 // Router Basic
 app.use('/api', operationsRoutes);

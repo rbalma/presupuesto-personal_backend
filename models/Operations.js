@@ -4,9 +4,9 @@ const db = require('../config/db');
 
 const Operation = db.define('operation', {
     id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        type: DataTypes.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
     },
     name: DataTypes.STRING(100),
     price: DataTypes.FLOAT(8, 2),
