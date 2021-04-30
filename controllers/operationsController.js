@@ -2,17 +2,21 @@ const Operation = require('../models/Operations');
 
 exports.getOperations = async (req, res) => {
     const operations = await Operation.findAll({
+        where: {
+            userId: req.params.userId
+        },
         order: [
-            ['id', 'DESC'],
-        ]
+            ['createdAt', 'DESC'],
+        ],
+        limit: 10
     });
     res.json(operations);
 }
 
 exports.newOperations = async (req, res) => {
-    const { name, price, date, type } = req.body; 
+    const { name, price, date, type, userId } = req.body; 
 
-    const operation = await Operation.create({name, price, date, type});
+    const operation = await Operation.create({name, price, date, type, userId});
         res.json(operation);
         //.then(() => )
         //.catch(err => res.status(404).send({message: err}))
@@ -61,7 +65,8 @@ exports.getPrices = async (req, res) => {
 
     const sum = await Operation.sum('price', {
         where: {
-            type: query.type
+            type: query.type,
+            userId: req.params.userId
         }
     })
 

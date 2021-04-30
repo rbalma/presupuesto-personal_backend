@@ -11,7 +11,11 @@ const Operation = db.define('operation', {
     name: DataTypes.STRING(100),
     price: DataTypes.FLOAT(8, 2),
     date: DataTypes.DATEONLY,
-    type: DataTypes.STRING(10)
+    type: DataTypes.STRING(10),
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+      }
 });
 
 module.exports = Operation;

@@ -18,6 +18,8 @@ exports.login = async (req, res, next) => {
             where: { email: email }
          });
 
+         const id = user.id;
+
          if(!user) {
             await res.status(401).json({message: 'El usuario no existe'});
             next();
@@ -34,7 +36,7 @@ exports.login = async (req, res, next) => {
                      expiresIn: '3h'
                  });
 
-                 res.json({ token });
+                 res.json({ token, id });
              }
          }
 
